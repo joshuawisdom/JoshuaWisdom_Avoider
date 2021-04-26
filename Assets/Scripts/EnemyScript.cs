@@ -1,43 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
     public List<WaypointScript> Waypoints = new List<WaypointScript>();
-    public float Speed = 5.5f;
+    public float Speed = 1.7f;
     public int DestinationWaypoint = 1;
+    public Transform player;
 
     private Vector3 Destination;
     private bool Forwards = true;
-    //private LineRenderer l;
     private float TimePassed = 0f;
+    private float chaseSpeed = 4.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         this.Destination = this.Waypoints[DestinationWaypoint].transform.position;
-        //l = gameObject.AddComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         StopAllCoroutines();
-        StartCoroutine(MoveTo());
-        //DrawLines();
-    }
 
-    //void DrawLines()
-    //{
-    //    List<Vector3> pos = new List<Vector3>();
-    //    pos.Add(transform.position);
-    //    pos.Add(Destination);
-    //    l.startWidth = 0.15f;
-    //    l.endWidth = 0.15f;
-    //    l.SetPositions(pos.ToArray());
-    //    l.useWorldSpace = true;
-    //}
+        if (IsPlayerClose())
+        {
+            ChasePlayer();
+            IsPlayerCaptured();
+        }
+        else
+            StartCoroutine(MoveTo());
+    }
 
     IEnumerator MoveTo()
     {
@@ -80,6 +76,39 @@ public class EnemyScript : MonoBehaviour
         else
             --DestinationWaypoint;
 
+        if (DestinationWaypoint >= this.Waypoints.Count)
+            DestinationWaypoint = 0;
+
         this.Destination = this.Waypoints[DestinationWaypoint].transform.position;
+    }
+
+    private bool IsPlayerClose()
+    {
+        if ((Mathf.Abs(this.gameObject.transform.position.x - player.transform.position.x) < 4f) &&
+            (Mathf.Abs(this.gameObject.transform.position.y - player.transform.position.y) < 4f))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    void ChasePlayer()
+    {
+
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * chaseSpeed);
+    }
+
+    private bool IsPlayerCaptured()
+    {
+        if ((Mathf.Abs(this.gameObject.transform.position.x - player.transform.position.x) < .5f) &&
+            (Mathf.Abs(this.gameObject.transform.position.y - player.transform.position.y) < .5f))
+        {
+            Debug.Log("Restart at " + Time.time);
+            SceneManager.LoadScene("SampleScene");
+            return true;
+        }
+        else
+            return false;
     }
 }

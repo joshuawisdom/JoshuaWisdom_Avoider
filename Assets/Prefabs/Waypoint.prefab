@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcb1c600ecc94624882be29199f4ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEndpoint: 0
+  IsSentry: 0
+  PauseTime: 3
