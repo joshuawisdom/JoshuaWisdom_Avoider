@@ -1,14 +1,23 @@
-﻿using System.Collections;
+﻿//Joshua Wisdom
+//2313991
+//CPSC 236-03
+//jowisdom@chapman.edu
+//Project 07: Avoider
+//This is my own work, and I did not cheat on this assignment.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
+    public Rigidbody2D rb;
     public List<WaypointScript> Waypoints = new List<WaypointScript>();
     public float Speed = 1.7f;
     public int DestinationWaypoint = 1;
     public Transform player;
+    public Animator animator;
 
     private Vector3 Destination;
     private bool Forwards = true;
@@ -105,7 +114,7 @@ public class EnemyScript : MonoBehaviour
             (Mathf.Abs(this.gameObject.transform.position.y - player.transform.position.y) < .5f))
         {
             Debug.Log("Restart at " + Time.time);
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("AvoiderGame");
             return true;
         }
         else

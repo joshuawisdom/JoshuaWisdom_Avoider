@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//Joshua Wisdom
+//2313991
+//CPSC 236-03
+//jowisdom@chapman.edu
+//Project 07: Avoider
+//This is my own work, and I did not cheat on this assignment.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,6 +14,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float moveSpeed = 6f;
+    public Animator animator;
 
     public Vector2 targetPosition; // cursor clicked position
     public Vector2 relativePosition;  // relativePosition - character relative position
@@ -26,6 +34,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        animator.SetFloat("Speed", (Mathf.Abs(targetPosition.x - gameObject.transform.position.x)));
 
         // set the mouse position
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -79,5 +88,16 @@ public class Player : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
     }
+
+    //private bool IsMoving()
+    //{
+    //    if ((Mathf.Abs(targetPosition.x - gameObject.transform.position.x) > 0.01) ^ (Mathf.Abs(targetPosition.y - gameObject.transform.position.y) > 0.01))
+    //    {
+    //        Debug.Log("Moving!");
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6855251506427363952}
   - component: {fileID: 8257699038518425395}
   - component: {fileID: 5331273555582485054}
+  - component: {fileID: 4611319430873829307}
   m_Layer: 0
   m_Name: Gorbo_Enemy
   m_TagString: Untagged
@@ -97,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d13aecf19c84426971f3e1a9eafa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 8257699038518425395}
   Waypoints: []
   Speed: 1.7
   DestinationWaypoint: 1
   player: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!50 &8257699038518425395
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +151,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56, y: 0.7}
   m_EdgeRadius: 0
+--- !u!95 &4611319430873829307
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5930416470543780268}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 259bcfce67d164342bf06562544e0531, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

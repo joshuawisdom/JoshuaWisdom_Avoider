@@ -8,10 +8,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class WaypointScript : MonoBehaviour
+public class LoadAvoider : MonoBehaviour
 {
-    public bool IsEndpoint;
-    public bool IsSentry = false;
-    public float PauseTime = 3.0f;
+    public void LoadScene()
+    {
+        SceneManager.LoadScene("AvoiderGame");
+    }
 }

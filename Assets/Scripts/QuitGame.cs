@@ -8,10 +8,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class WaypointScript : MonoBehaviour
+public class QuitGame : MonoBehaviour
 {
-    public bool IsEndpoint;
-    public bool IsSentry = false;
-    public float PauseTime = 3.0f;
+    public void QuitButton()
+    {
+        Debug.Log("Game quit at " + Time.time);
+        Application.Quit();
+    }
 }
